@@ -1,0 +1,52 @@
+<h1><a href="/">Home</a></h1>
+
+<h4>Log in or sign up here</h4>
+
+{{ site.name }}
+{{ site.url }}
+
+<hr>
+
+<div class="row">
+    <div class="medium-6 medium-centered large-4 large-centered columns">
+
+        <form action="/auth/login" method="post">
+            <div class="row column log-in-form">
+                <h4 class="text-center">Log in</h4>
+                <label>Email
+                    <input type="text" placeholder="somebody@example.com">
+                </label>
+                <label>Password
+                    <input type="text" placeholder="Password">
+                </label>
+                <p><button type="submit" class="button expanded">Log in</button></p>
+                <p class="text-center"><a href="/auth/forgotpass">Forgot your password?</a></p>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="medium-6 medium-centered large-4 large-centered columns">
+
+        <form action="/auth/signup" method="post">
+            <div class="row column log-in-form">
+                <h4 class="text-center">Sign up</h4>
+                <label>Email
+                    <input type="email" placeholder="somebody@example.com">
+                </label>
+                <label>Password
+                    <input type="password" placeholder="p455w0rd">
+                </label>
+                <label>Confirm Password
+                    <input type="password" placeholder="p455w0rd">
+                </label>
+                <p><button type="submit" class="button expanded">Sign up</button></p>
+            </div>
+        </form>
+
+    </div>
+</div>

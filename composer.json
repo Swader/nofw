@@ -2,7 +2,11 @@
     "require": {
         "twig/twig": "^1.23",
         "php-di/php-di": "^5.2",
-        "nikic/fast-route": "^0.7.0"
+        "nikic/fast-route": "^0.7.0",
+        "psecio/gatekeeper": "^2.9",
+        "swiftmailer/swiftmailer": "^5.4",
+        "doctrine/annotations": "^1.2",
+        "guzzlehttp/guzzle": "^6.1"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.0"
