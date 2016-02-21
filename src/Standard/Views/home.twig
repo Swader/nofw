@@ -1,5 +1,17 @@
-<h1>Skeleton Sign up / Log in App</h1>
+{% extends 'layout/master.twig' %}
 
-<p>This app is a starting point for an application with sign up / log in functionality, a configured PHP-DI, FastRoute and basic controllers set up.</p>
+{% block content %}
 
-<p>To sign up / log in, please go <a href="/auth">here</a>.</p>
+    <h1>NOFW skeleton app</h1>
+
+    <p>Welcome!</p>
+
+    <p>This is a highly configurable skeleton app with dependency injection, user authentication and authorization, templating, flash messages, and more. It's a no-framework framework, in a way. For details, please see the
+        <a href="https://github.com/swader/nofw">README</a>.</p>
+
+    {% if username == null %}
+        <p>To sign up / log in, please go <a href="/auth">here</a>.</p>
+    {% endif %}
+
+
+{% endblock %}

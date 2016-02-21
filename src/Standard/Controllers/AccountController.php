@@ -4,7 +4,13 @@ namespace Standard\Controllers;
 
 use Twig_Environment;
 
-class HomeController
+/**
+ * Class AccountController
+ * @package Standard\Controllers
+ *
+ * @auth-groups admin
+ */
+class AccountController
 {
 
     /**
@@ -24,10 +30,18 @@ class HomeController
      */
     public function __invoke()
     {
-        $message = 'Hello from Home, invoked';
+        echo $this->twig->render('account/home.twig', [
+            'message' => 'Hello from Account, invoked',
+        ]);
+    }
 
-        echo $this->twig->render('home.twig', [
-            'message' => $message,
+    /**
+     * @auth-groups reg-user
+     */
+    public function indexAction()
+    {
+        echo $this->twig->render('account/index.twig', [
+            'message' => 'Hello from account, index action',
         ]);
     }
 }

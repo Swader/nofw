@@ -1,4 +1,6 @@
-<h1><a href="/">Home</a></h1>
+{% extends 'layout/master.twig' %}
+
+{% block content %}
 
 <h4>Log in or sign up here</h4>
 
@@ -14,10 +16,10 @@
             <div class="row column log-in-form">
                 <h4 class="text-center">Log in</h4>
                 <label>Email
-                    <input type="text" placeholder="somebody@example.com">
+                    <input type="email" name="email" placeholder="somebody@example.com">
                 </label>
                 <label>Password
-                    <input type="text" placeholder="Password">
+                    <input type="password" placeholder="Password" name="password">
                 </label>
                 <p><button type="submit" class="button expanded">Log in</button></p>
                 <p class="text-center"><a href="/auth/forgotpass">Forgot your password?</a></p>
@@ -36,13 +38,13 @@
             <div class="row column log-in-form">
                 <h4 class="text-center">Sign up</h4>
                 <label>Email
-                    <input type="email" placeholder="somebody@example.com">
+                    <input type="email" name="email" placeholder="somebody@example.com">
                 </label>
                 <label>Password
-                    <input type="password" placeholder="p455w0rd">
+                    <input type="password" name="password" placeholder="p455w0rd">
                 </label>
                 <label>Confirm Password
-                    <input type="password" placeholder="p455w0rd">
+                    <input type="password" name="password_confirm" placeholder="p455w0rd">
                 </label>
                 <p><button type="submit" class="button expanded">Sign up</button></p>
             </div>
@@ -50,3 +52,4 @@
 
     </div>
 </div>
+{% endblock %}

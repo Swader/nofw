@@ -1,1 +1,18 @@
-Hello from forgotpass: {{ method }}.
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+<h1>Forgot your password?</h1>
+<p>Enter your email below and we'll send you password reset instructions.</p>
+
+{% if errors %}
+    {% for error in errors %}
+        <p class="error">{{ error }}</p>
+    {% endfor %}
+{% endif %}
+
+<form action="" method="post">
+    <input type="email" name="email" id="email" required="required"
+           placeholder="someone@example.com">
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

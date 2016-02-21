@@ -1,0 +1,11 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+<h1>Enter your new password</h1>
+
+<form action="/resetpass" method="post">
+    <input type="password" name="password" id="password" required="required">
+    <input type="password" name="password_confirm" id="password_confirm" required="required">
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

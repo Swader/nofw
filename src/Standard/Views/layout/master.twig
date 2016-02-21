@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+<body>
+<header><a href="/">Home (change in Views/layout/)</a>
+
+    {% if (username) %}
+        &nbsp; Logged in as {{ username }} :: <a href="/logout">Log out</a>
+    {% endif %}
+
+</header>
+
+{% if (flashes) %}{{ flashes }}{% endif %}
+
+<div id="content">{% block content %}{% endblock %}</div>
+<div id="footer">
+    {% block footer %}
+        &copy; Copyright 2016 by <a href="https://twitter.com/bitfalls">@bitfalls</a>.
+    {% endblock %}
+</div>
+</body>
+</html>
