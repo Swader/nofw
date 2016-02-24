@@ -46,3 +46,5 @@ nb-configuration.xml
 
 public/dist/css/*.css
 public/dist/js/*.js
+
+/phinx.yml
