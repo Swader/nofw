@@ -77,7 +77,7 @@ To style the messages, several pre-configured templates exist that you can injec
 
 ### Styling
 
-To alter the styling of the entire skeleton application, simply pull in a popular CSS framework and edit the master layout (`src/Standard/Views/layout/master.twig`) to include its required CSS and JS.
+See [FRONTEND.md](docs/FRONTEND.md).
 
 ### Error pages
 
