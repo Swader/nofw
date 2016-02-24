@@ -2,54 +2,78 @@
 
 {% block content %}
 
-<h4>Log in or sign up here</h4>
+    <h4>Log in or sign up here</h4>
 
-{{ site.name }}
-{{ site.url }}
+    {{ site.name }}
+    {{ site.url }}
 
-<hr>
+    <hr>
 
-<div class="row">
-    <div class="medium-6 medium-centered large-4 large-centered columns">
+    <ul class="tabs" data-tabs id="authforms">
+        <li class="tabs-title is-active"><a href="#login"
+                                            aria-selected="true">Log In</a></li>
+        <li class="tabs-title"><a href="#signup">Sign Up</a></li>
+    </ul>
 
-        <form action="/auth/login" method="post">
-            <div class="row column log-in-form">
-                <h4 class="text-center">Log in</h4>
-                <label>Email
-                    <input type="email" name="email" placeholder="somebody@example.com">
-                </label>
-                <label>Password
-                    <input type="password" placeholder="Password" name="password">
-                </label>
-                <p><button type="submit" class="button expanded">Log in</button></p>
-                <p class="text-center"><a href="/auth/forgotpass">Forgot your password?</a></p>
+    <div class="tabs-content" data-tabs-content="authforms">
+        <div class="tabs-panel is-active" id="login">
+
+            <div class="row column small-4 log-in-form">
+                <form action="/auth/login" method="post" class="column">
+                    <div class="">
+                        <label>Email
+                            <input type="email" name="email"
+                                   placeholder="somebody@example.com">
+                        </label>
+                    </div>
+                    <label>Password
+                        <input type="password"
+                               placeholder="Password"
+                               name="password">
+                    </label>
+                    <p>
+                        <button type="submit"
+                                class="button expanded">Log in
+                        </button>
+                    </p>
+                    <p class="text-center"><a
+                                href="/auth/forgotpass">Forgot your password?</a>
+                    </p>
+
+                </form>
             </div>
-        </form>
 
-    </div>
-</div>
+        </div>
 
-<hr>
+        <div class="tabs-panel" id="signup">
+            <div class="row column small-4 log-in-form">
 
-<div class="row">
-    <div class="medium-6 medium-centered large-4 large-centered columns">
+                <form action="/auth/signup" class="column" method="post">
+                    <div class="">
+                        <label>Email
+                            <input type="email" name="email"
+                                   placeholder="somebody@example.com">
+                        </label>
+                    </div>
+                    <label>Password
+                        <input type="password"
+                               placeholder="pa55w0rd"
+                               name="password">
+                    </label>
+                    <label>Password
+                        <input type="password"
+                               placeholder="Confirm pa55w0rd"
+                               name="password_confirm">
+                    </label>
+                    <p>
+                        <button type="submit"
+                                class="button expanded">Register
+                        </button>
+                    </p>
+                </form>
 
-        <form action="/auth/signup" method="post">
-            <div class="row column log-in-form">
-                <h4 class="text-center">Sign up</h4>
-                <label>Email
-                    <input type="email" name="email" placeholder="somebody@example.com">
-                </label>
-                <label>Password
-                    <input type="password" name="password" placeholder="p455w0rd">
-                </label>
-                <label>Confirm Password
-                    <input type="password" name="password_confirm" placeholder="p455w0rd">
-                </label>
-                <p><button type="submit" class="button expanded">Sign up</button></p>
             </div>
-        </form>
-
+        </div>
     </div>
-</div>
+
 {% endblock %}

@@ -1,0 +1,7 @@
+/* Put your CSS here, and make sure it's built via assets.ini to have an effect */
+
+.log-in-form {
+    border: 1px solid #cacaca;
+    padding: 1rem;
+    border-radius: 3px;
+}

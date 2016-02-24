@@ -3,6 +3,8 @@
 <head>
     {% block head %}
         <link rel="stylesheet" href="/static/css/style.css" />
+        {#Switch the comments if you're using the README version of front end asset management#}
+        {#<link rel="stylesheet" href="/dist/css/app.dev.css" />#}
         <title>{% block title %}{% endblock %} - My Webpage</title>
     {% endblock %}
 </head>
@@ -15,7 +17,7 @@
 
 </header>
 
-{% if (flashes) %}{{ flashes }}{% endif %}
+{% if (flashes) %}{{ flashes|raw }}{% endif %}
 
 <div id="content">{% block content %}{% endblock %}</div>
 <div id="footer">
@@ -23,5 +25,7 @@
         &copy; Copyright 2016 by <a href="https://twitter.com/bitfalls">@bitfalls</a>.
     {% endblock %}
 </div>
+{#Uncomment the below if you're using the README version of front end asset management#}
+{#<script src="/dist/js/app.dev.js"></script>#}
 </body>
 </html>

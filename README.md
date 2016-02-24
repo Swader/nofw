@@ -11,6 +11,8 @@ A lightweight (relatively, compared to modern frameworks) no-framework skeleton 
 - Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
 
+Additionally, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [FRONTEND.md](docs/FRONTEND.md).
+
 ## Prerequisites
 
 - MySQL (due to Gatekeeper)
@@ -33,7 +35,7 @@ mysql -u myuser -p < data/db/gatekeeper_init.sql
 
 Finally, finish Gatekeeper installation by running:
 
-```
+```bash
 vendor/bin/setup.sh
 ```
 
@@ -96,3 +98,4 @@ When extending the application with your own services and controllers, it is rec
 ```bash
 composer dump-autoload
 ```
+

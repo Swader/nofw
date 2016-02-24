@@ -1,0 +1,27 @@
+; This is how assets.ini should be configured if you install Foundation as per README instructions
+
+[css]
+cachePath = public/dist/css
+paths[] = assets
+
+[js]
+cachePath = public/dist/js
+paths[] = assets
+
+[app.dev.css]
+files[] = bower/foundation-sites/dist/foundation-flex.css
+files[] = custom/css/style.css
+
+[app.min.css]
+extend = app.dev.css
+filters[] = CssMinFilter
+
+[app.dev.js]
+files[] = bower/what-input/what-input.js
+files[] = bower/jquery/dist/jquery.js
+files[] = bower/foundation-sites/dist/foundation.js
+files[] = custom/js/app.js
+
+[app.min.js]
+extend = app.dev.js
+filters[] = JsMinFilter
