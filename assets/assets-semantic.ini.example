@@ -1,0 +1,27 @@
+; This is how assets.ini should be configured if you install SemanticUI
+
+[css]
+cachePath = public/dist/css
+paths[] = assets
+
+[js]
+cachePath = public/dist/js
+paths[] = assets
+
+[app.dev.css]
+files[] = bower/semantic/dist/semantic.css
+files[] = custom/css/style.css
+
+[app.min.css]
+extend = app.dev.css
+filters[] = CssMinFilter
+
+[app.dev.js]
+files[] = bower/what-input/what-input.js
+files[] = bower/jquery/dist/jquery.js
+files[] = bower/semantic/dist/semantic.js
+files[] = custom/js/app.js
+
+[app.min.js]
+extend = app.dev.js
+filters[] = JsMinFilter
