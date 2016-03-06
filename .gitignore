@@ -47,4 +47,8 @@ nb-configuration.xml
 public/dist/css/*.css
 public/dist/js/*.js
 
+# Ignore all generated images, but keep the folder
+public/static/image/*
+!public/static/image/.gitkeep
+
 /phinx.yml

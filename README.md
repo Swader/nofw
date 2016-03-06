@@ -75,6 +75,14 @@ To get access to flash messages, either retrieve the flasher instance from the c
 
 To style the messages, several pre-configured templates exist that you can inject into the Flash class. Most popular CSS frameworks are covered. For available templates, see `vendor/tamtamchik/simple-flash/src/Templates/`. Change the injected template in `app/config.php` (notice that Foundation6 is injected by default).
 
+### Image generation
+
+This skeleton comes with [Glide](http://glide.thephpleague.com) which generates resized images from a source image on-demand - perfect for media queries. It also saves them for later, so the next time they're requested, they don't need to be regenerated. In a nutshell, this allows you to have a single image like `assets/image/xyz.png`, and then request it with `/static/image/xyz-WIDTH.png` and it will get automatically generated at that width.
+
+For a demonstration of this, see the homepage when you install the project, or read [this tutorial](http://www.sitepoint.com/easy-dynamic-on-demand-image-resizing-with-glide).
+
+Note that while this is on by default, it is entirely optional - you can disable this image generation by commenting out the related route in `routes.php`.
+
 ### Styling
 
 See [FRONTEND.md](docs/FRONTEND.md).

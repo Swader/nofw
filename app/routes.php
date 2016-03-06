@@ -30,4 +30,9 @@ return [
     ['GET', '/account', 'Standard\Controllers\AccountController'],
     ['GET', '/account/index', ['Standard\Controllers\AccountController', 'indexAction']],
 
+    /* Comment the line below if you don't want to use Glide's dynamic
+     * image generation (see http://www.sitepoint.com/easy-dynamic-on-demand-image-resizing-with-glide) */
+    ['GET', '/static/image/{image}', ['Standard\Controllers\ImageController', 'renderImage']],
+    ['GET', '/image/demo', ['Standard\Controllers\ImageController', 'demo']]
+
 ];

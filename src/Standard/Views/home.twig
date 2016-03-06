@@ -9,6 +9,12 @@
     <p>This is a highly configurable skeleton app with dependency injection, user authentication and authorization, templating, flash messages, and more. It's a no-framework framework, in a way. For details, please see the
         <a href="https://github.com/swader/nofw">README</a>.</p>
 
+    <h2>Dynamic image generation demo</h2>
+
+    <p>This skeleton comes with PhpLeague's <a
+                href="http://glide.thephpleague.org">Glide</a>, a library for dynamically generating different sizes of images for different devices. This allows you to include a single source image (i.e. "sitepoint_logo.png"), request a resized version (i.e. "sitepoint_logo-320.png") and it will get generated automatically - even saved for later use. This is perfect for media queries and the like. To test this out, go
+        <a href="/image/demo">here</a>.</p>
+
     {% if username == null %}
         <p>To sign up / log in, please go <a href="/auth">here</a>.</p>
     {% endif %}

@@ -8,7 +8,8 @@
         "tamtamchik/simple-flash": "dev-master",
         "respect/validation": "^1.0",
         "sitepoint/rauth": "dev-master",
-        "doctrine/annotations": "^1.2"
+        "doctrine/annotations": "^1.2",
+        "league/glide": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.0",
