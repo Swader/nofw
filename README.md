@@ -10,6 +10,7 @@ A lightweight (relatively, compared to modern frameworks) no-framework skeleton 
 - Flash messages via ["tamtamchik/simple-flash"](https://github.com/tamtamchik/simple-flash), see master layout for where they're displayed, and `config.php` for where they are passed into Twig if they exist. In `config.php` you can also define a custom pre-made style to the templates - many popular CSS frameworks are supported. Defaults to Foundation.
 - Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
+- Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
 
 Additionally, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [FRONTEND.md](docs/FRONTEND.md).
 
