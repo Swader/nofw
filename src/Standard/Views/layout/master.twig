@@ -2,10 +2,18 @@
 <html>
 <head>
     {% block head %}
-        <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/style.css"/>
         {#Switch the comments if you're using the README version of front end asset management#}
         {#<link rel="stylesheet" href="/dist/css/app.dev.css" />#}
-        <title>{% block title %}{% endblock %} - My Webpage</title>
+
+        {#The small bit of logic below allows you to define custom sub-titles for pages by defining the title block in child views#}
+        {% set _block = block('title') %}
+        {% set maintitle = "My Webpage" %}
+        {% if _block is not empty %}
+            <title>{{ _block|raw }} - {{ maintitle }}</title>
+        {% else %}
+            <title>{{ maintitle }}</title>
+        {% endif %}
     {% endblock %}
 </head>
 <body>
@@ -22,7 +30,8 @@
 <div id="content">{% block content %}{% endblock %}</div>
 <div id="footer">
     {% block footer %}
-        &copy; Copyright 2016 by <a href="https://twitter.com/bitfalls">@bitfalls</a>.
+        &copy; Copyright 2016 by <a
+            href="https://twitter.com/bitfalls">@bitfalls</a>.
     {% endblock %}
 </div>
 {#Uncomment the below if you're using the README version of front end asset management#}
