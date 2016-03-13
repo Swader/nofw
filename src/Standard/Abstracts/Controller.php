@@ -2,6 +2,7 @@
 
 namespace Standard\Abstracts;
 
+use Psr\Log\LoggerInterface;
 use Tamtamchik\SimpleFlash\Flash;
 
 abstract class Controller
@@ -18,6 +19,12 @@ abstract class Controller
      * @var array
      */
     protected $site;
+
+    /**
+     * @Inject
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Redirects the app to a given URL, absolute or relative, remote or local.

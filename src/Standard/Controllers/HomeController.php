@@ -2,9 +2,10 @@
 
 namespace Standard\Controllers;
 
+use Standard\Abstracts\Controller;
 use Twig_Environment;
 
-class HomeController
+class HomeController extends Controller
 {
 
     /**
