@@ -1,0 +1,80 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+
+    <h1>{% if user %}Updating{% else %}Creating{% endif %} User</h1>
+
+    <form class="ui large form" method="post" action="/users/add">
+
+        <h4 class="ui horizontal divider header">Basic Information</h4>
+
+        {% if user.id %}
+            <input type="hidden" name="id" value="{{ user.id }}">
+        {% endif %}
+
+        <div class="ui stacked segment">
+            <div class="field">
+                <label>First Name</label>
+                <div class="ui input">
+                    <input type="text" name="firstName"
+                           placeholder="First name"
+                           value="{{ user.firstName }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <div class="ui input">
+                    <input type="text" name="lastName"
+                           placeholder="Last name"
+                           value="{{ user.lastName }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <div class="ui input">
+                    <input type="text" name="email"
+                           placeholder="Email"
+                           value="{{ user.email }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <div class="ui input">
+                    <input type="text" name="password"
+                           placeholder="password"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox"
+                           {% if user.status == "active" %}checked='checked'{% endif %}
+                           name="active">
+                    <label>Active? (disable to ban user)</label>
+                </div>
+            </div>
+
+        </div>
+
+        <h4 class="ui horizontal divider header">Groups</h4>
+
+        <select name="groups[]" multiple="multiple" class="ui fluid dropdown">
+            <option value="">Groups</option>
+
+            {% for group in groups %}
+                <option {% if group.name in groupnames %}selected{% endif %}
+                        value="{{ group.id }}">{{ group.name }} - {{ group.description }}</option>
+            {% endfor %}
+        </select>
+
+        <h4 class="ui horizontal divider header"></h4>
+
+        <button class="ui button fluid large teal submit"
+                type="submit">Save changes
+        </button>
+    </form>
+
+{% endblock %}

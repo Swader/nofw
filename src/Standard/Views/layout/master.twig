@@ -17,13 +17,8 @@
     {% endblock %}
 </head>
 <body>
-<header><a href="/">Home (change in Views/layout/)</a>
 
-    {% if (username) %}
-        &nbsp; Logged in as {{ username }} :: <a href="/logout">Log out</a>
-    {% endif %}
-
-</header>
+{% include 'partials/header.twig' %}
 
 {% if (flashes) %}{{ flashes|raw }}{% endif %}
 

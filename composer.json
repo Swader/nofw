@@ -3,13 +3,14 @@
         "twig/twig": "^1.23",
         "php-di/php-di": "^5.2",
         "nikic/fast-route": "^0.7.0",
-        "psecio/gatekeeper": "dev-master",
         "guzzlehttp/guzzle": "^6.1",
-        "tamtamchik/simple-flash": "dev-master",
         "respect/validation": "^1.0",
-        "sitepoint/rauth": "dev-master",
         "doctrine/annotations": "^1.2",
-        "league/glide": "^1.0"
+        "league/glide": "^1.0",
+
+        "psecio/gatekeeper": "dev-patch-2",
+        "tamtamchik/simple-flash": "dev-master",
+        "sitepoint/rauth": "dev-master"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.0",
@@ -31,6 +32,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/swader/gatekeeper"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/swader/modler"
         }
     ]
 }

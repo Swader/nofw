@@ -1,0 +1,60 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+
+    <h1>List of users</h1>
+    <h4>Add, edit, or delete users here</h4>
+
+    <div class="ui button medium"><a href="/users/add">Add new user</a></div>
+
+    {% if users %}
+        <table class="ui very basic table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email / Username</th>
+                <th>Status</th>
+                <th>Groups</th>
+                <th>Last Login</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.firstName }} {{ user.lastName }}</td>
+                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a>
+                    </td>
+                    <td>{{ user.status }}</td>
+                    <td>
+                        {% if user.groups is iterable %}
+                            {% for group in user.groups %}
+                                {{ group.name }},
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    <td>{{ user.lastLogin|date("F jS \\a\\t g:ia") }}
+                        {% if user.email != username %}
+                            <form action="/users/forcelogin" method="post">
+                                <input type="hidden" name="id"
+                                       value="{{ user.id }}">
+                                <button class="ui button mini"
+                                        type="submit">Log in
+                                </button>
+                            </form>
+                        {% endif %}
+                    </td>
+                    <td><a href="/users/delete/{{ user.id }}"
+                           title="delete user">Delete</a>
+                        <a href="/users/add/{{ user.id }}" title="edit user">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

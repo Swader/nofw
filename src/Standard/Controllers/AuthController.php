@@ -3,6 +3,7 @@
 namespace Standard\Controllers;
 
 use GuzzleHttp\ClientInterface;
+use Psecio\Gatekeeper\Exception\UserInactiveException;
 use Psecio\Gatekeeper\Gatekeeper;
 use Psecio\Gatekeeper\UserModel;
 use Respect\Validation\Exceptions\ValidationException;
@@ -20,20 +21,9 @@ class AuthController extends Controller
     private $twig;
 
     /**
-     * @Inject
-     * @var Flash
-     */
-    private $flasher;
-
-    /**
      * @Inject("mailgun-config")
      */
     private $mailgun_config;
-
-    /**
-     * @Inject("site-config")
-     */
-    private $site_config;
 
     public function __construct(Twig_Environment $twig)
     {
@@ -59,10 +49,12 @@ class AuthController extends Controller
         $adminGroup = null;
         foreach ($groups as $name => $description) {
             if (!Gatekeeper::findGroupByName($name)) {
-                Gatekeeper::createGroup([
-                    'name' => $name,
-                    'description' => $description
-                ]);
+                Gatekeeper::createGroup(
+                    [
+                        'name' => $name,
+                        'description' => $description,
+                    ]
+                );
             }
         }
     }
@@ -74,7 +66,9 @@ class AuthController extends Controller
             v::email()->check($_POST['email']);
             v::length(6)->check($_POST['password']);
         } catch (ValidationException $e) {
-            $this->flasher->error('Please make sure your password is longer than 6 characters, and that your username is a valid email address!');
+            $this->flasher->error(
+                'Please make sure your password is longer than 6 characters, and that your username is a valid email address!'
+            );
         }
 
         if ($_POST['password'] !== $_POST['password_confirm']) {
@@ -88,30 +82,49 @@ class AuthController extends Controller
         $this->initGroups();
 
         // Create an account if none exists
-        $user = Gatekeeper::register([
-            'first_name' => '-',
-            'last_name' => '-',
-            'username' => $_POST['email'],
-            'email' => $_POST['email'],
-            'password' => $_POST['password'],
-            'groups' => (Gatekeeper::countUser()) ? ['users'] : ['admin', 'users']
-        ]);
+        $user = Gatekeeper::register(
+            [
+                'first_name' => '-',
+                'last_name' => '-',
+                'username' => $_POST['email'],
+                'email' => $_POST['email'],
+                'password' => $_POST['password'],
+                'groups' => (Gatekeeper::countUser()) ? ['users'] : [
+                    'admin',
+                    'users',
+                ],
+            ]
+        );
 
         if ($user) {
-            $this->flasher->success('Account successfully registered! Please log in!');
+            $this->flasher->success(
+                'Account successfully registered! Please log in!'
+            );
         } else {
-            $this->flasher->error('Error #GK01: Account creation failed!' . Gatekeeper::getDatasource()->getLastError());
+            $this->flasher->error(
+                'Error #GK01: Account creation failed!' . Gatekeeper::getDatasource(
+                )->getLastError()
+            );
         }
         $this->redirect('/auth');
     }
 
     public function processLogin()
     {
-        if (Gatekeeper::authenticate([
-            'username' => $_POST['email'],
-            'password' => $_POST['password']
-        ])
-        ) {
+        $success = false;
+        try {
+            $success = Gatekeeper::authenticate(
+                [
+                    'username' => $_POST['email'],
+                    'password' => $_POST['password'],
+                ]
+            );
+        } catch (\Exception $e) {
+            $this->flasher->error(($this->site['debug']) ? $e->getMessage() : 'Something went wrong');
+            $this->redirect('/auth');
+        }
+
+        if ($success) {
             $_SESSION['user'] = $_POST['email'];
             $this->redirect('/');
         } else {
@@ -166,23 +179,25 @@ class AuthController extends Controller
                         // SEND EMAIL
                         $response = $client->request(
                             'POST', $url, [
-                            'auth' => ['api', $this->mailgun_config['key']],
-                            'multipart' => [
-                                ['name' => 'to', 'contents' => $email],
-                                ['name' => 'from', 'contents' => $replyto],
-                                [
-                                    'name' => 'subject',
-                                    'contents' => 'Forgot your password?'
+                                'auth' => ['api', $this->mailgun_config['key']],
+                                'multipart' => [
+                                    ['name' => 'to', 'contents' => $email],
+                                    ['name' => 'from', 'contents' => $replyto],
+                                    [
+                                        'name' => 'subject',
+                                        'contents' => 'Forgot your password?',
+                                    ],
+                                    ['name' => 'html', 'contents' => $html],
                                 ],
-                                ['name' => 'html', 'contents' => $html]
                             ]
-                        ]
                         );
                     }
 
                     if ($response && $response->getStatusCode() == "200") {
                         // REDIRECT
-                        $this->flasher->info('Password reset email is on its way!');
+                        $this->flasher->info(
+                            'Password reset email is on its way!'
+                        );
                     } else {
                         $this->flasher->error('Email could not be sent :(');
                     }

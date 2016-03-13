@@ -72,7 +72,7 @@ All services are built in `app/config.php` as part of the PHP-DI dependency inje
 
 ### Flash Messages
 
-To get access to flash messages, either retrieve the flasher instance from the container (`$container->get(Tamtamchik\SimpleFlash\Flash::class)`) or have it auto-injected into controllers (see `AuthController` for example and [PHP-DI docs](http://php-di.org/doc/best-practices.html#writing-controllers) for documentation about this).
+To get access to flash messages, either retrieve the flasher instance from the container (`$container->get(Tamtamchik\SimpleFlash\Flash::class)`) or have it auto-injected into controllers (see `AuthController` for example and [PHP-DI docs](http://php-di.org/doc/best-practices.html#writing-controllers) for documentation about this). Autoinjection is already set up if you use the abstract standard Controller included with the app.
 
 To style the messages, several pre-configured templates exist that you can inject into the Flash class. Most popular CSS frameworks are covered. For available templates, see `vendor/tamtamchik/simple-flash/src/Templates/`. Change the injected template in `app/config.php` (notice that Foundation6 is injected by default).
 

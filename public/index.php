@@ -16,6 +16,7 @@ $container = require __DIR__ . '/../app/bootstrap.php';
 use \Psecio\Gatekeeper\Gatekeeper;
 
 Gatekeeper::init('../');
+Gatekeeper::disableThrottle();
 
 $routeList = require '../app/routes.php';
 
