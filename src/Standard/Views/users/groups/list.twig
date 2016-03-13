@@ -1,0 +1,38 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+
+    <h1>List of groups</h1>
+    <h4>Add, edit, or delete groups here</h4>
+
+    <div class="ui button medium"><a href="/users/groups/add">Add new group</a></div>
+
+    {% if groups %}
+        <table class="ui very basic table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Members</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for group in groups %}
+                <tr>
+                    <td>{{ group.id }}</td>
+                    <td>{{ group.name }}</td>
+                    <td>{{ group.description }}</td>
+                    <td>{{ group.users|length }}</td>
+                    <td><a href="/users/groups/delete/{{ group.id }}" title="delete group">Delete</a>
+                        <a href="/users/groups/add/{{ group.id }}" title="edit group">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

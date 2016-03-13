@@ -33,6 +33,18 @@ return [
     /* Comment the line below if you don't want to use Glide's dynamic
      * image generation (see http://www.sitepoint.com/easy-dynamic-on-demand-image-resizing-with-glide) */
     ['GET', '/static/image/{image}', ['Standard\Controllers\ImageController', 'renderImage']],
-    ['GET', '/image/demo', ['Standard\Controllers\ImageController', 'demo']]
+    ['GET', '/image/demo', ['Standard\Controllers\ImageController', 'demo']],
+
+    // User management routes
+    ['GET', '/users', 'Standard\Controllers\UsersController'],
+    ['GET', '/users/add[/{id}]', ['Standard\Controllers\UsersController', 'upsertUser']],
+    ['POST', '/users/add', ['Standard\Controllers\UsersController', 'upsertUserProcess']],
+    ['GET', '/users/groups', ['Standard\Controllers\UsersController', 'listGroups']],
+    ['GET', '/users/groups/add[/{id}]', ['Standard\Controllers\UsersController', 'upsertGroup']],
+    ['POST', '/users/groups/add', ['Standard\Controllers\UsersController', 'upsertGroupProcess']],
+    ['POST', '/users/forcelogin', ['Standard\Controllers\UsersController', 'logInAs']],
+    ['GET', '/users/exitsuper', ['Standard\Controllers\UsersController', 'exitSuper']],
+    ['GET', '/users/delete/{id}', ['Standard\Controllers\UsersController', 'deleteUser']],
+    ['GET', '/users/groups/delete/{id}', ['Standard\Controllers\UsersController', 'deleteGroup']],
 
 ];

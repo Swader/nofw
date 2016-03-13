@@ -1,0 +1,20 @@
+{% if super %}
+    <div class="superwarning">You are logged in as {{ username }} via your admin account. Click
+        <a href="/users/exitsuper">here</a> to go back to admin mode.
+    </div>
+{% endif %}
+<header>
+    <p>Change links in Views/partials/header.twig</p>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users">List users</a></li>
+        <li><a href="/users/groups">List groups</a></li>
+    </ul>
+
+    {% if (username) %}
+        &nbsp; Logged in as {{ username }} :: <a href="/logout">Log out</a>
+    {% endif %}
+
+</header>
+
+<hr>

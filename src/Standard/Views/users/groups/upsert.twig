@@ -1,0 +1,39 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+
+    <h1>{% if group %}Updating{% else %}Creating{% endif %} Group</h1>
+
+    <form class="ui large form" method="post" action="/users/groups/add">
+
+        <h4 class="ui horizontal divider header">Group Information</h4>
+
+        {% if group.id %}
+            <input type="hidden" name="id" value="{{ group.id }}">
+        {% endif %}
+
+        <div class="ui stacked segment">
+            <div class="field">
+                <label>Name</label>
+                <div class="ui input">
+                    <input type="text" name="name"
+                           placeholder="Name"
+                           value="{{ group.name }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label for="description">Description</label>
+                <textarea name="description" id="description">{{ group.description }}</textarea>
+            </div>
+
+        </div>
+
+        <h4 class="ui horizontal divider header"></h4>
+
+        <button class="ui button fluid large teal submit"
+                type="submit">Save changes
+        </button>
+    </form>
+
+{% endblock %}

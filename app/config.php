@@ -25,7 +25,7 @@ $shared = [
         'url' => 'http://test.app',
         'sender' => 'skeleton@example.app',
         'replyto' => 'skeleton@example.app',
-        'debug' => (bool)getenv('DEBUG'),
+        'debug' => getenv('DEBUG') === 'true',
     ],
     'user' => $user,
 ];
@@ -51,6 +51,10 @@ return [
 
         if ($shared['user']) {
             $te->addGlobal('username', $shared['user']->username);
+        }
+
+        if (isset($_SESSION['superuser'])) {
+            $te->addGlobal('super', $_SESSION['superuser']);
         }
 
         if ($flash->hasMessages()) {
@@ -100,4 +104,5 @@ return [
         // Add cache at some point
         return $rauth;
     },
+
 ];

@@ -11,6 +11,7 @@ A lightweight (relatively, compared to modern frameworks) no-framework skeleton 
 - Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
 - Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
+- User management: as a demonstration of controllers and some basic CRUD operations, see the `UsersController` which provides user and group CRUD.
 
 Additionally, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [FRONTEND.md](docs/FRONTEND.md).
 
@@ -72,7 +73,7 @@ All services are built in `app/config.php` as part of the PHP-DI dependency inje
 
 ### Flash Messages
 
-To get access to flash messages, either retrieve the flasher instance from the container (`$container->get(Tamtamchik\SimpleFlash\Flash::class)`) or have it auto-injected into controllers (see `AuthController` for example and [PHP-DI docs](http://php-di.org/doc/best-practices.html#writing-controllers) for documentation about this).
+To get access to flash messages, either retrieve the flasher instance from the container (`$container->get(Tamtamchik\SimpleFlash\Flash::class)`) or have it auto-injected into controllers (see `AuthController` for example and [PHP-DI docs](http://php-di.org/doc/best-practices.html#writing-controllers) for documentation about this). Autoinjection is already set up if you use the abstract standard Controller included with the app.
 
 To style the messages, several pre-configured templates exist that you can inject into the Flash class. Most popular CSS frameworks are covered. For available templates, see `vendor/tamtamchik/simple-flash/src/Templates/`. Change the injected template in `app/config.php` (notice that Foundation6 is injected by default).
 
