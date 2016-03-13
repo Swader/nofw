@@ -1,7 +1,6 @@
 # Package managers
 vendor
 composer.phar
-composer.lock
 /node_modules/
 assets/bower/*
 

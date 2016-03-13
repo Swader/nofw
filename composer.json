@@ -11,7 +11,7 @@
         "psecio/gatekeeper": "dev-patch-2",
         "tamtamchik/simple-flash": "dev-master",
         "sitepoint/rauth": "dev-master",
-        "monolog/monolog": "dev-master as 1.18"
+        "monolog/monolog": "^1.18"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.0",
