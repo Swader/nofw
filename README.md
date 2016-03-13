@@ -11,6 +11,7 @@ A lightweight (relatively, compared to modern frameworks) no-framework skeleton 
 - Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
 - Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
+- User management: as a demonstration of controllers and some basic CRUD operations, see the `UsersController` which provides user and group CRUD.
 
 Additionally, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [FRONTEND.md](docs/FRONTEND.md).
 
