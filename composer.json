@@ -9,7 +9,7 @@
         "league/glide": "^1.0",
 
         "psecio/gatekeeper": "dev-patch-2",
-        "tamtamchik/simple-flash": "dev-master",
+        "tamtamchik/simple-flash": "^1.1",
         "sitepoint/rauth": "dev-master",
         "monolog/monolog": "^1.18"
     },
