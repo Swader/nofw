@@ -4,12 +4,13 @@ use function DI\object;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Monolog\Handler\BrowserConsoleHandler;
-use Monolog\Handler\PHPConsoleHandler;
 use Monolog\Handler\StreamHandler;
 use Psecio\Gatekeeper\Gatekeeper;
 use SitePoint\Rauth;
 use Tamtamchik\SimpleFlash\Flash;
-use Tamtamchik\SimpleFlash\Templates\Foundation6Template;
+use Tamtamchik\SimpleFlash\FlashInterface;
+use Tamtamchik\SimpleFlash\TemplateFactory;
+use Tamtamchik\SimpleFlash\Templates;
 use Psr\Log\LoggerInterface as Logger;
 
 $user = null;
@@ -45,7 +46,7 @@ return [
     'site-config' => $shared['site'],
 
     // Configure Twig
-    Twig_Environment::class => function (Flash $flash) use ($shared) {
+    Twig_Environment::class => function (FlashInterface $flash) use ($shared) {
         $loader = new Twig_Loader_Filesystem(
             __DIR__ . '/../src/Standard/Views'
         );
@@ -96,7 +97,7 @@ return [
     },
 
     Flash::class => function () {
-        return new Flash(new Foundation6Template());
+        return new Flash(TemplateFactory::create(Templates::FOUNDATION_6));
     },
 
     'User' => function () use ($shared) {
