@@ -7,11 +7,11 @@
         "respect/validation": "^1.0",
         "doctrine/annotations": "^1.2",
         "league/glide": "^1.0",
+        "tamtamchik/simple-flash": "^1.2",
+        "monolog/monolog": "^1.18",
 
         "psecio/gatekeeper": "dev-patch-2",
-        "tamtamchik/simple-flash": "^1.2",
-        "sitepoint/rauth": "dev-master",
-        "monolog/monolog": "^1.18"
+        "sitepoint/rauth": "dev-master"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.0",

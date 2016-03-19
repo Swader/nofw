@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "23872e61300b06298a8cb64e8dd8219e",
-    "content-hash": "23e42c7fc7b2b41ff7517a11af0a1528",
+    "hash": "96247ec16300897cc315e0d6df9d6762",
+    "content-hash": "b6f80c8d9f70d647375031250e8d0dd9",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -575,16 +575,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.19",
+            "version": "1.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "635ee279a522233a567984756bf9da1db243d9bf"
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/635ee279a522233a567984756bf9da1db243d9bf",
-                "reference": "635ee279a522233a567984756bf9da1db243d9bf",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
                 "shasum": ""
             },
             "require": {
@@ -654,7 +654,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-03-12 19:04:33"
+            "time": "2016-03-14 21:54:11"
         },
         {
             "name": "league/glide",
@@ -719,21 +719,21 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "dev-master",
+            "version": "1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "0c45c9b3d45cf35c4d3a827cac896db63b226b81"
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/0c45c9b3d45cf35c4d3a827cac896db63b226b81",
-                "reference": "0c45c9b3d45cf35c4d3a827cac896db63b226b81",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
+                "reference": "a5f2734e8c16f3aa21b3da09715d10e15b4d2d45",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "psr/log": "^1.0"
+                "php": ">=5.3.0",
+                "psr/log": "~1.0"
             },
             "provide": {
                 "psr/log-implementation": "1.0.0"
@@ -744,7 +744,8 @@
                 "graylog2/gelf-php": "~1.0",
                 "jakub-onderka/php-parallel-lint": "0.9",
                 "php-console/php-console": "^3.1.3",
-                "phpunit/phpunit": "^5.0",
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "2.3.0",
                 "raven/raven": "^0.13",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
@@ -754,9 +755,9 @@
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongodb": "Allow sending log messages to a MongoDB server (via driver)",
+                "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "mongodb/mongodb": "Allow sending log messages to a MongoDB server (via library)",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -792,7 +793,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-03-10 11:37:00"
+            "time": "2016-03-13 16:08:35"
         },
         {
             "name": "nikic/fast-route",
@@ -1249,12 +1250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sitepoint/Rauth.git",
-                "reference": "48cf0fb5edf41f2deaa3a471039953dd77c193db"
+                "reference": "bb8f12ed37a8bb3df535d745622b8794724227c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sitepoint/Rauth/zipball/48cf0fb5edf41f2deaa3a471039953dd77c193db",
-                "reference": "48cf0fb5edf41f2deaa3a471039953dd77c193db",
+                "url": "https://api.github.com/repos/sitepoint/Rauth/zipball/bb8f12ed37a8bb3df535d745622b8794724227c0",
+                "reference": "bb8f12ed37a8bb3df535d745622b8794724227c0",
                 "shasum": ""
             },
             "require": {
@@ -1298,7 +1299,7 @@
                 "acl",
                 "authorization"
             ],
-            "time": "2016-02-20 19:34:26"
+            "time": "2016-03-15 10:08:53"
         },
         {
             "name": "symfony/config",
@@ -1676,7 +1677,7 @@
                 "messages",
                 "notifications"
             ],
-            "time": "2016-03-19 10:56:59"
+            "time": "2016-03-19 10:53:24"
         },
         {
             "name": "twig/twig",
@@ -1798,12 +1799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bee-Lab/bowerphp.git",
-                "reference": "1b9e01a02d5629f9ea9987ccdf59b56bf2106ed9"
+                "reference": "283b455e6cb259f9a67ce7488de2ed166f8b485b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/1b9e01a02d5629f9ea9987ccdf59b56bf2106ed9",
-                "reference": "1b9e01a02d5629f9ea9987ccdf59b56bf2106ed9",
+                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/283b455e6cb259f9a67ce7488de2ed166f8b485b",
+                "reference": "283b455e6cb259f9a67ce7488de2ed166f8b485b",
                 "shasum": ""
             },
             "require": {
@@ -1813,7 +1814,7 @@
                 "knplabs/github-api": "1.4.*",
                 "php": ">=5.3.6",
                 "symfony/console": "~2.3|~3.0",
-                "symfony/filesystem": "~2.3|~3.0",
+                "symfony/filesystem": "~2.4|~3.0",
                 "symfony/finder": "~2.3|~3.0",
                 "symfony/process": "~2.3|~3.0",
                 "vierbergenlars/php-semver": "~3.0"
@@ -1863,7 +1864,7 @@
                 "frontend",
                 "package"
             ],
-            "time": "2016-01-25 11:15:56"
+            "time": "2016-03-16 12:01:12"
         },
         {
             "name": "camspiers/json-pretty",
@@ -2054,18 +2055,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/flint/Lurker.git",
-                "reference": "ab45f9cefe600065cc3137a238217598d3a1d062"
+                "reference": "712d3ef19bef161daa2ba0e0237c6b875587a089"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flint/Lurker/zipball/ab45f9cefe600065cc3137a238217598d3a1d062",
-                "reference": "ab45f9cefe600065cc3137a238217598d3a1d062",
+                "url": "https://api.github.com/repos/flint/Lurker/zipball/712d3ef19bef161daa2ba0e0237c6b875587a089",
+                "reference": "712d3ef19bef161daa2ba0e0237c6b875587a089",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/config": "~2.2",
-                "symfony/event-dispatcher": "~2.2"
+                "symfony/config": "^2.2|^3.0",
+                "symfony/event-dispatcher": "^2.2|^3.0"
             },
             "suggest": {
                 "ext-inotify": ">=0.1.6"
@@ -2105,7 +2106,7 @@
                 "resource",
                 "watching"
             ],
-            "time": "2015-10-27 09:19:19"
+            "time": "2016-03-16 15:22:20"
         },
         {
             "name": "knplabs/github-api",
@@ -2278,16 +2279,16 @@
         },
         {
             "name": "markstory/mini-asset",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/mini-asset.git",
-                "reference": "d69fd1aa3cce8887944f36759970ea0359bdff10"
+                "reference": "2754547822b4e512f1d1f979722ddbd0cca2ffce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/d69fd1aa3cce8887944f36759970ea0359bdff10",
-                "reference": "d69fd1aa3cce8887944f36759970ea0359bdff10",
+                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/2754547822b4e512f1d1f979722ddbd0cca2ffce",
+                "reference": "2754547822b4e512f1d1f979722ddbd0cca2ffce",
                 "shasum": ""
             },
             "require": {
@@ -2334,7 +2335,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2016-01-30 00:42:03"
+            "time": "2016-03-15 01:25:48"
         },
         {
             "name": "natxet/CssMin",
@@ -2705,20 +2706,11 @@
             "time": "2015-05-02 19:28:54"
         }
     ],
-    "aliases": [
-        {
-            "alias": "1.18",
-            "alias_normalized": "1.18.0.0",
-            "version": "9999999-dev",
-            "package": "monolog/monolog"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "psecio/gatekeeper": 20,
-        "tamtamchik/simple-flash": 20,
         "sitepoint/rauth": 20,
-        "monolog/monolog": 20,
         "beelab/bowerphp": 20,
         "henrikbjorn/lurker": 20
     },
