@@ -9,7 +9,8 @@ use Monolog\Handler\StreamHandler;
 use Psecio\Gatekeeper\Gatekeeper;
 use SitePoint\Rauth;
 use Tamtamchik\SimpleFlash\Flash;
-use Tamtamchik\SimpleFlash\Templates\Foundation6Template;
+use Tamtamchik\SimpleFlash\TemplateFactory;
+use Tamtamchik\SimpleFlash\Templates;
 use Psr\Log\LoggerInterface as Logger;
 
 $user = null;
@@ -96,7 +97,7 @@ return [
     },
 
     Flash::class => function () {
-        return new Flash(new Foundation6Template());
+        return new Flash(TemplateFactory::create(Templates::FOUNDATION_6));
     },
 
     'User' => function () use ($shared) {
