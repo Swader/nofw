@@ -50,4 +50,4 @@ public/dist/js/*.js
 public/static/image/*
 !public/static/image/.gitkeep
 
-/phinx.yml
+phinx.yml

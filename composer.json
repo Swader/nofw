@@ -9,6 +9,8 @@
         "league/glide": "^1.0",
         "tamtamchik/simple-flash": "^1.2",
         "monolog/monolog": "^1.18",
+        "hellogerard/jobby": "^3.0",
+        "cakephp/orm": "^3.2",
 
         "psecio/gatekeeper": "dev-patch-2",
         "sitepoint/rauth": "dev-master"

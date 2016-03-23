@@ -17,7 +17,6 @@ extend = app.dev.css
 filters[] = CssMinFilter
 
 [app.dev.js]
-files[] = bower/what-input/what-input.js
 files[] = bower/jquery/dist/jquery.js
 files[] = bower/semantic/dist/semantic.js
 files[] = custom/js/app.js

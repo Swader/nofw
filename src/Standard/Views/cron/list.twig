@@ -1,0 +1,96 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+
+    <h4 class="ui horizontal divider header">General Cron Settings</h4>
+
+    <form action="/admin/crons/settings" method="post" class="ui form large">
+
+        <div class="ui stacked segment">
+            <div class="field">
+                <label>Log file</label>
+                <div class="ui input">
+                    <input type="text" name="output"
+                           placeholder="cron.log"
+                           value="{{ cronSettings.output }}"
+                           style="cursor: auto;">
+                </div>
+                <div class="ui pointing label">
+                    General log into which to write cronjob outputs. Can be overridden on a per-cron instance.
+                </div>
+            </div>
+            <div class="field">
+                <label>Recipients</label>
+                <div class="ui input">
+                    <input type="text" name="recipients"
+                           placeholder="my@email.com"
+                           value="{{ cronSettings.recipients }}"
+                           style="cursor: auto;">
+                </div>
+                <div class="ui pointing label">
+                    Recipients defined here will get sent all erroneous cronjob execution output unless overridden on a per-cron instance.
+                </div>
+            </div>
+        </div>
+
+        <button type="submit"
+                class="button ui teal fluid">Save Global Cron Settings
+        </button>
+    </form>
+
+    {% if crons %}
+
+        <h4 class="ui horizontal divider header">List of currently defined cronjobs</h4>
+
+        <a href="/admin/crons/add" class="ui teal">Add new cron</a>
+
+        <table class="ui table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Schedule</th>
+                <th>Logfile</th>
+                <th>Recipients</th>
+                <th>Environment</th>
+                <th>Command</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cron in crons %}
+                <tr>
+                    <td>{{ cron.id }}</td>
+                    <td>{{ cron.name }}</td>
+                    <td>{{ cron.description }}</td>
+                    <td>{{ cron.status }}</td>
+                    <td>{{ cron.schedule }}</td>
+                    <td>{{ cron.output }}</td>
+                    <td>{{ cron.recipients }}</td>
+                    <td>{{ cron.environment }}</td>
+                    <td>{{ cron.command }}</td>
+                    <td>
+                        <a href="/admin/crons/edit/{{ cron.id }}">Edit</a>
+                        <form action="/admin/crons/delete" method="post">
+                            <input type="checkbox" name="deleteLog"
+                                   value="{{ cron.id }}">
+                            <input type="hidden" name="id" value="{{ cron.id }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <h3>No crons defined yet. Add some?</h3>
+
+    {% endif %}
+
+    <a href="/admin/crons/add" class="ui teal">Add new cron</a>
+
+{% endblock %}

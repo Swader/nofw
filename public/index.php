@@ -1,24 +1,37 @@
 <?php
 
+/**
+ * The main bootstrap file.
+ *
+ * It loads the DI configurations `app/config/config_web.php`, sets up routes,
+ * and then calls the controller defined in the routes.
+ *
+ * Autowiring and annotation use is on, so easy dependency injection is enabled
+ * by default.
+ *
+ * This file also checks for authorization using Rauth to make sure the current
+ * user has permissions to run a controller/method. For more information on that
+ * @see http://www.sitepoint.com/control-user-access-to-classes-and-methods-with-rauth/
+ */
+
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use DI\Container;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
+use Psr\Log\LoggerInterface;
 use SitePoint\Rauth;
 use Tamtamchik\SimpleFlash\Flash;
+use DI\ContainerBuilder;
 
-/** @var Container $container */
-$container = require __DIR__ . '/../app/bootstrap.php';
-// Gatekeeper initalization and configuration
-use \Psecio\Gatekeeper\Gatekeeper;
+$containerBuilder = new ContainerBuilder;
+$container = $containerBuilder
+    ->addDefinitions(require_once __DIR__ . '/../app/config/config_web.php')
+    ->useAnnotations(true)
+    ->build();
 
-Gatekeeper::init('../');
-Gatekeeper::disableThrottle();
-
-$routeList = require '../app/routes.php';
+$routeList = require __DIR__.'/../app/routes.php';
 
 /** @var Dispatcher $dispatcher */
 $dispatcher = FastRoute\simpleDispatcher(
@@ -64,7 +77,7 @@ switch ($route[0]) {
                 $attr['permissions'][] = $permission->name;
             }
         }
-        //dump($attr);
+
         try {
             $ctrl = (is_array($controller))
                 ? $container->get($controller[0])
@@ -73,7 +86,9 @@ switch ($route[0]) {
             $method = (is_array($controller)) ? $controller[1] : '__invoke';
 
             $rauth->authorize($ctrl, $method, $attr);
+
         } catch (Rauth\Exception\AuthException $e) {
+            $logger = $container->get(LoggerInterface::class)->error('Omg');
             $flasher = $container->get(Flash::class);
             if ($container->get('site-config')['debug'] === true) {
                 $flasher->error('Failed due to: ' . $e->getType());

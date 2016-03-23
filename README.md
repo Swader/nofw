@@ -1,19 +1,29 @@
-## NOFW skeleton
+# SitePoint Skeleton Application
 
-A lightweight (relatively, compared to modern frameworks) no-framework skeleton app with login / registration functionality. Useful for framework-agnostic tutorials. It includes the following out of the box:
+A lightweight (relatively, compared to modern frameworks) skeleton app with login / registration functionality. Useful for framework-agnostic tutorials. 
+
+---
+
+> The biggest difference when compared to typical frameworks is full support for a front-end build toolchain **entirely without NodeJS**, so you can be sure your builds will *always* work, and work well. See below for more info.
+
+---
+
+It includes the following out of the box (detailed descriptions of features are lower in this document):
 
 - Routing via ["nikic/fast-route"](https://github.com/nikic/FastRoute) - see `app/routes.php`
-- Dependency Injection via ["php-di/php-di"](https://github.com/PHP-DI/PHP-DI) - see `app/config.php`
+- Dependency Injection via ["php-di/php-di"](https://github.com/PHP-DI/PHP-DI) - see `app/config/config_*.php`
 - View (template) engine via ["twig/twig"](http://twig.sensiolabs.org/)
 - Sign Up / Log in functionality via ["psecio/gatekeeper"](https://github.com/psecio/gatekeeper) (see `.env` for MySQL credentials and `phinx.yml` for migration info) - currently hard-coupled into app
 - Password reset email via Mailgun and Guzzle (see `.env` for where to put Mailgun key and domain and see `Views/emails/forgotpass.twig` for email template)
-- Flash messages via ["tamtamchik/simple-flash"](https://github.com/tamtamchik/simple-flash), see master layout for where they're displayed, and `config.php` for where they are passed into Twig if they exist. In `config.php` you can also define a custom pre-made style to the templates - many popular CSS frameworks are supported. Defaults to Foundation.
-- Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
+- Flash messages via ["tamtamchik/simple-flash"](https://github.com/tamtamchik/simple-flash), see master layout for where they're displayed, and `config.php` for where they are passed into Twig if they exist. In `config.php` you can also define a custom pre-made style to the templates - many popular CSS frameworks are supported. Defaults to [SemanticUI](http://semantic-ui.com).
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
-- Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
 - User management: as a demonstration of controllers and some basic CRUD operations, see the `UsersController` which provides user and group CRUD.
+- [Optional] Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
+- [Optional] Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
+- [Optional] Cronjobs via [Jobby](https://github.com/jobbyphp/jobby/) and built-in cronjob CRUD (see `/admin/crons` when logged in)
+- [Optional] Basic database access via [CakeORM](http://book.cakephp.org/3.0/en/orm) - default connection defined in `app/config/connections/default.php`.
 
-Additionally, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [FRONTEND.md](docs/FRONTEND.md).
+**Additionally**, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [here](docs/FRONTEND.md).
 
 ## Prerequisites
 
@@ -69,13 +79,19 @@ Even though Gatekeeper supports group and permission hierarchy, it is recommende
 
 ### Services
 
-All services are built in `app/config.php` as part of the PHP-DI dependency injection container. Whenever you feel like calling the `new` keyword in a controller or another service, reconsider and do it in `app/config.php` instead. This has several advantages, not the least of which are the fact that all services are registered in one place and easily tracked, and the fact that your application is not tightly coupled to those services - you can replace their implementation with something else in the configuration later on, and as long as the API is the same, the app needn't know about the change.
+All services are built in `app/config/config_*.php` as part of the PHP-DI dependency injection container. Whenever you feel like calling the `new` keyword in a controller or another service, reconsider and do it there instead. This has several advantages, not the least of which are the fact that all services are registered in one place and easily tracked, and the fact that your application is not tightly coupled to those services - you can replace their implementation with something else in the configuration later on, and as long as the API is the same, the app needn't know about the change.
+
+There are two config files - one aimed at the web version of the app, and one aimed at the CLI version. While the app doesn't have a CLI endpoint as such, it does have a cron endpoint (`app/cron.php`) which utilizes this CLI configuration. Study the respective files for more information.
+
+### Templating
+
+The application comes with [Twig](http://twig.sensiolabs.org/) out of the box. Several global variables are predefined for the template engine, for easy access in the templates. To see which ones, please inspect the relevant section in `app/config/config_web.php`. To add more folders in which to look for templates to Twig, please see `app/config/shared/root.php` in which site-wide configuration is set up.
 
 ### Flash Messages
 
 To get access to flash messages, either retrieve the flasher instance from the container (`$container->get(Tamtamchik\SimpleFlash\Flash::class)`) or have it auto-injected into controllers (see `AuthController` for example and [PHP-DI docs](http://php-di.org/doc/best-practices.html#writing-controllers) for documentation about this). Autoinjection is already set up if you use the abstract standard Controller included with the app.
 
-To style the messages, several pre-configured templates exist that you can inject into the Flash class. Most popular CSS frameworks are covered. For available templates, see `vendor/tamtamchik/simple-flash/src/Templates/`. Change the injected template in `app/config.php` (notice that Foundation6 is injected by default).
+To style the messages, several pre-configured templates exist that you can inject into the Flash class. Most popular CSS frameworks are covered. For available templates, see `vendor/tamtamchik/simple-flash/src/Templates/` or `vendor/tamtamchik/simple-flash/src/TemplateFactory.php`. Change the injected template in `app/config/config_web_.php` (notice that SemanticUI is injected by default).
 
 ### Image generation
 
@@ -84,6 +100,40 @@ This skeleton comes with [Glide](http://glide.thephpleague.com) which generates 
 For a demonstration of this, see the homepage when you install the project, or read [this tutorial](http://www.sitepoint.com/easy-dynamic-on-demand-image-resizing-with-glide).
 
 Note that while this is on by default, it is entirely optional - you can disable this image generation by commenting out the related route in `routes.php`.
+
+### Cronjobs
+
+This skeleton also comes with [Jobby](https://github.com/jobbyphp/jobby/) for optional cronjob management via PHP.
+
+To activate this part:
+
+- add tables needed for crons to work to your database. Find the SQL to import in `/data/db/cron.sql`
+
+- point your system's crontab to `app/cron.php` with a line like:
+    
+    ```cron
+    * * * * * cd /home/vagrant/Code/nofw/app && php cron.php 1>> /dev/null 2>&1
+    ```
+    
+    This will make sure the cron endpoint is called every minute.
+    
+- Write new cron tasks (see `src/Standard/Cron/ExampleCronTask.php` for example)
+
+- Add new crons to the database via the CRUD interface by visiting `admin/crons`
+
+Note that the cron classes you write will have access to all the dependencies defined in the `app/config/config_cli.php` file.
+
+### Database Access
+
+CakeORM was used for super-easy access to cron tables (see Cronjobs section above), but can be reused for the rest of the app, too. The default connection is defined in the `app/config/connections/default.php` file.
+
+Tables are accessed like this:
+
+```php
+    $crons = TableRegistry::get('Cron')->find()-> ... ;
+```
+
+For more information, and to learn how to use CakeORM, please see [their docs](http://book.cakephp.org/3.0/en/orm/). Do keep in mind that if you don't like CakeORM or want to use your own database access layer, you're entirely free to do so.
 
 ### Styling
 
@@ -97,15 +147,28 @@ When a route is not found, a 404 page is automatically rendered. When the wrong 
 
 Sending "forgot password" emails is done via Mailgun, purely because it's simplest. The email templates are in `src/Standard/Views/emails`. However, it should be noted that it's currently used without a Mailgun client package or any other dependency, so really, the emailing system is completely optional and interchangeable. If, however, you do choose to use Mailgun, put the credentials into the `.env` file (see `.env.example` for inspiration) and then see how it was done in `AuthController::forgotPassword`.
 
-### Debug mode
+### Debug mode and environment
 
-To switch debug mode on/off, change it in `.env`. See `.env.example` for inspiration. Currently debug mode only affects the output of permissions errors via Rauth (see `index.php`).
+To switch debug mode on/off, change it in `.env`. See `.env.example` for inspiration. Currently debug mode only affects the output of permissions errors via Rauth (see `index.php`). You can also change the application environment by modifying the `APPLICATION_ENV` key in `.env`.
 
 ### Extending
 
-When extending the application with your own services and controllers, it is recommended you use a different namespace than the `Standard` included by default. `Standard` is there for the basic skeleton stuff, and will be improved further with time. To write your own controllers, classes, etc, make a new folder in `src`, e.g. `MyNamespace`, and then put your stuff in there. Don't forget to register this new namespace in `composer.json` and regenerate autoload files by running:
+When extending the application with your own services and controllers, it is recommended you use a different namespace than the `Standard` included by default. `Standard` is there for the basic skeleton stuff, and will be improved further with time. 
+
+To write your own controllers, classes, etc, make a new folder in `src`, e.g. `MyNamespace`, and then put your stuff in there. Don't forget to register this new namespace in `composer.json` and regenerate autoload files by running:
 
 ```bash
 composer dump-autoload
 ```
 
+To add views for this new namespace, add a `Views` folder in there, like in `Standard`, and then include this new view folder in the configuration, i.e. add an entry to `app/config/shared/root.php` under `viewsFolders`:
+
+```php
+
+// ...
+
+'viewsFolders' => [__DIR__.'/../../../src/Standard/Views', __DIR__.'/../../../src/MyApp/Views']
+
+// ...
+
+```

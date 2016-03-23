@@ -14,24 +14,23 @@ By default, all assets installed with BowerPHP will go into `assets/bower`. This
 vendor/bin/bowerphp install foundation-sites --save
 ```
 
-The `--save` flag is there to make sure BowerPHP generates a `bower.json` file which will remember that we wanted Foundation installed. This way, one can just run `vendor/bin/bowerphp install` next time the project is being bootstrapped elsewhere without specifying all the needed assets.
+The `--save` flag is there to make sure BowerPHP generates a `bower.json` file which will remember that we wanted Foundation installed. This way, one can just run `vendor/bin/bowerphp install` next time the project is being bootstrapped elsewhere without specifying all the needed assets. You should also modify the author and the project name in `bower.json` directly.
 
 *Note that since these assets will be installed outside the `public` directory, they will be inaccessible to the server and thus unsuitable for direct inclusion into templates. To be able to use them, either change the default installation location to something like `public/bower` and then link to them there, or use a build process (see below).*
 
 ### Building with Mini-asset
 
-We'll use the previously installed [Foundation 6](http://foundation.zurb.com/index.html) for all further examples of asset compilation. Foundation 6 is a pretty alternative to Bootstrap.
+We'll use the previously installed [SemanticUI](http://semantic-ui.com) for all further examples of asset compilation. SemanticUI is an extremely pretty and versatile alternative to Bootstrap.
 
-The above bower command installed Foundation6 into three folders into `assets/bower`:
+The above bower command installed Semantic into two folders into `assets/bower`:
 
-![Foundation installed tree](docs/images/foundation-installed.png)
+![Semantic installed tree](images/semantic-installed.png)
 
 While this is a lot of files, only a few are needed to make things work, and those are mainly in the various `dist` subfolders. We need:
 
-- `what-input.js` to tell the app what's currently being used as input (keyboard, mouse, fingers...)
-- `jquery.js` to power `foundation.js`
-- `foundation.js` to power the interactive JavaScript elements of Foundation
-- `foundation-flex.css` to have the power of [Flexbox](https://scotch.io/tutorials/get-to-know-the-flexbox-grid-in-foundation-6) CSS.
+- `jquery.js` to power `semantic.js`
+- `semantic.js` to power the interactive JavaScript elements of Semantic
+- `semantic.css` to get the Semantic styles
 
 
 The order is important, because those lower in the list depend on those higher in the list. Technically, you could now copy these files into `public` and just include them in the HTML as regular JS and CSS files, and everything would work. However, we want to automate things, and we want to turn the files into one compressed file, for faster page loading. This is where [mini-asset](https://github.com/markstory/mini-asset/) comes in. It is already installed in this project.
@@ -45,6 +44,8 @@ Which files are to be processed in which way is configured in `assets/assets.ini
 
 
 ```ini
+; This is how assets.ini should be configured if you install SemanticUI
+
 [css]
 cachePath = public/dist/css
 paths[] = assets
@@ -54,7 +55,7 @@ cachePath = public/dist/js
 paths[] = assets
 
 [app.dev.css]
-files[] = bower/foundation-sites/dist/foundation-flex.css
+files[] = bower/semantic/dist/semantic.css
 files[] = custom/css/style.css
 
 [app.min.css]
@@ -64,7 +65,7 @@ filters[] = CssMinFilter
 [app.dev.js]
 files[] = bower/what-input/what-input.js
 files[] = bower/jquery/dist/jquery.js
-files[] = bower/foundation-sites/dist/foundation.js
+files[] = bower/semantic/dist/semantic.js
 files[] = custom/js/app.js
 
 [app.min.js]
@@ -72,7 +73,7 @@ extend = app.dev.js
 filters[] = JsMinFilter
 ```
 
-This same sample configuration can be seen in `assets/assets-foundation.ini.example`.
+This same sample configuration can also be seen in `assets/assets-semantic.ini.example`.
 
 Here's what it means, in order:
 

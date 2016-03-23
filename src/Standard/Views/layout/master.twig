@@ -2,9 +2,9 @@
 <html>
 <head>
     {% block head %}
-        <link rel="stylesheet" href="/static/css/style.css"/>
+        {#<link rel="stylesheet" href="/static/css/style.css"/>#}
         {#Switch the comments if you're using the README version of front end asset management#}
-        {#<link rel="stylesheet" href="/dist/css/app.dev.css" />#}
+        <link rel="stylesheet" href="/dist/css/app.dev.css" />
 
         {#The small bit of logic below allows you to define custom sub-titles for pages by defining the title block in child views#}
         {% set _block = block('title') %}
@@ -30,6 +30,6 @@
     {% endblock %}
 </div>
 {#Uncomment the below if you're using the README version of front end asset management#}
-{#<script src="/dist/js/app.dev.js"></script>#}
+<script src="/dist/js/app.dev.js"></script>
 </body>
 </html>

@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * This file is consumed when the web side of the app is being loaded.
+ *
+ * These definitions will be available in the app's controllers etc.
+ */
+
 use function DI\object;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Monolog\Handler\BrowserConsoleHandler;
-use Monolog\Handler\PHPConsoleHandler;
 use Monolog\Handler\StreamHandler;
 use Psecio\Gatekeeper\Gatekeeper;
 use SitePoint\Rauth;
@@ -12,6 +17,9 @@ use Tamtamchik\SimpleFlash\Flash;
 use Tamtamchik\SimpleFlash\TemplateFactory;
 use Tamtamchik\SimpleFlash\Templates;
 use Psr\Log\LoggerInterface as Logger;
+
+Gatekeeper::init(__DIR__.'/../../');
+Gatekeeper::disableThrottle();
 
 $user = null;
 if (isset($_SESSION['user'])) {
@@ -24,31 +32,19 @@ if (isset($_SESSION['user'])) {
     }
 }
 
-$shared = [
-    'site' => [
-        'name' => 'Skeleton',
-        'url' => 'http://test.app',
-        'sender' => 'skeleton@example.app',
-        'replyto' => 'skeleton@example.app',
-        'debug' => getenv('DEBUG') === 'true',
-        'env' => getenv('ENVIRONMENT'),
-    ],
-    'user' => $user,
-];
+$shared = require_once __DIR__.'/shared/root.php';
+$shared['user'] = $user;
+require_once __DIR__.'/connections/default.php';
 
 return [
 
-    'mailgun-config' => [
-        'key' => getenv('MAILGUN_KEY'),
-        'domain' => getenv('MAILGUN_DOMAIN'),
-    ],
-
+    'mailgun-config' => $shared['mailgun-config'],
     'site-config' => $shared['site'],
 
     // Configure Twig
     Twig_Environment::class => function (Flash $flash) use ($shared) {
         $loader = new Twig_Loader_Filesystem(
-            __DIR__ . '/../src/Standard/Views'
+            $shared['site']['viewsFolders']
         );
 
         $te = new Twig_Environment($loader);
@@ -70,25 +66,7 @@ return [
         return $te;
     },
 
-    'glide' => function () {
-        $server = League\Glide\ServerFactory::create(
-            [
-                'source' => new League\Flysystem\Filesystem(
-                    new League\Flysystem\Adapter\Local(
-                        __DIR__ . '/../assets/image'
-                    )
-                ),
-                'cache' => new League\Flysystem\Filesystem(
-                    new League\Flysystem\Adapter\Local(
-                        __DIR__ . '/../public/static/image'
-                    )
-                ),
-                'driver' => 'gd',
-            ]
-        );
-
-        return $server;
-    },
+    'glide' => require_once __DIR__.'/shared/glide.php',
 
     ClientInterface::class => function () {
         $client = new Client();
@@ -97,7 +75,7 @@ return [
     },
 
     Flash::class => function () {
-        return new Flash(TemplateFactory::create(Templates::FOUNDATION_6));
+        return new Flash(TemplateFactory::create(Templates::SEMANTIC_2));
     },
 
     'User' => function () use ($shared) {
@@ -114,7 +92,8 @@ return [
     Logger::class => function () use ($shared) {
         $logger = new \Monolog\Logger('nofwlog');
 
-        $logger->pushHandler(new StreamHandler(__DIR__.'/../logs/all.log'));
+        $logger->pushHandler(new StreamHandler($shared['site']['logFolder'].'/all.log'));
+        $logger->pushHandler(new StreamHandler($shared['site']['logFolder'].'/error.log', \Monolog\Logger::ERROR));
         if ($shared['site']['env'] == 'dev') {
             $logger->pushHandler(new BrowserConsoleHandler());
         }
@@ -122,5 +101,5 @@ return [
         $logger->info('Logging set up');
 
         return $logger;
-    },
+    }
 ];
