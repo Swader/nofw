@@ -41,6 +41,20 @@ class CronController extends Controller
 
     public function listCrons()
     {
+        $cronSettings = $this->cronSettings->find()
+            ->hydrate(false)
+            ->toArray();
+
+        if (empty($cronSettings)) {
+            $cronSettings = [
+                'output' => 'cron-all.log',
+                'recipients' => $this->site['sender'],
+            ];
+            $this->cronSettings->save(
+                $this->cronSettings->newEntity()->set($cronSettings)
+            );
+        }
+
         echo $this->twig->render(
             'cron/list.twig', [
                 'crons' => $this->cronsTable->find()
