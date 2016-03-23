@@ -1,0 +1,87 @@
+{% extends 'layout/master.twig' %}
+
+{% block content %}
+
+    <form class="ui large form" method="post" action="/admin/crons/upsert">
+
+        <h4 class="ui horizontal divider header">Cron information</h4>
+
+        <input type="hidden" name="id" value="{{ cron.id }}"/>
+
+        <div class="ui stacked segment">
+            <div class="field">
+                <label>Name</label>
+                <div class="ui input">
+                    <input type="text" name="name"
+                           placeholder="Name"
+                           value="{{ cron.name }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Description</label>
+                <div class="ui input">
+                    <textarea name="description" cols="30" rows="10"
+                              style="cursor: auto">{{ cron.description }}</textarea>
+                </div>
+            </div>
+            <div class="field">
+                <label>Status</label>
+                <div class="ui input">
+                    <input type="text" name="status"
+                           placeholder="Status"
+                           value="{{ cron.status }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Schedule</label>
+                <div class="ui input">
+                    <input type="text" name="schedule"
+                           placeholder="Schedule"
+                           value="{{ cron.schedule }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Output</label>
+                <div class="ui input">
+                    <input type="text" name="output"
+                           placeholder="Log file"
+                           value="{{ cron.output }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Recipients</label>
+                <div class="ui input">
+                    <input type="text" name="recipients"
+                           placeholder="my@email.com"
+                           value="{{ cron.recipients }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Environment</label>
+                <div class="ui input">
+                    <input type="text" name="environment"
+                           placeholder="dev"
+                           value="{{ cron.environment }}"
+                           style="cursor: auto;">
+                </div>
+            </div>
+            <div class="field">
+                <label>Command</label>
+                <div class="ui input">
+                    <textarea name="command" cols="30" rows="10"
+                              style="cursor: auto">{{ cron.command }}</textarea>
+                </div>
+            </div>
+
+            <button class="ui fluid teal" type="submit">Save</button>
+
+        </div>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+    "name": "SitePoint Skeleton App",
+    "authors": [
+        "Beelab <info@bee-lab.net>",
+        "Bruno Skvorc <bruno@skvorc.me>"
+    ],
+    "private": true,
+    "dependencies": {
+
+    }
+}

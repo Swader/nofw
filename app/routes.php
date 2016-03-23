@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Define routes here.
+ *
+ * Routes follow the format:
+ *
+ * [METHOD, ROUTE, CALLABLE]
+ *
+ * Routes can use optional segments and regular expressions. See nikic/fastroute
+ */
+
 return [
     // Basic example routes. When controller is used without method (as string),
     // it needs to have a magic __invoke method defined
@@ -46,5 +56,12 @@ return [
     ['GET', '/users/exitsuper', ['Standard\Controllers\UsersController', 'exitSuper']],
     ['GET', '/users/delete/{id}', ['Standard\Controllers\UsersController', 'deleteUser']],
     ['GET', '/users/groups/delete/{id}', ['Standard\Controllers\UsersController', 'deleteGroup']],
+
+    ['GET', '/admin/crons', ['Standard\Controllers\Cron\CronController', 'listCrons']],
+    ['GET', '/admin/crons/add', ['Standard\Controllers\Cron\CronController', 'upsertCronGet']],
+    ['GET', '/admin/crons/edit/{id}', ['Standard\Controllers\Cron\CronController', 'upsertCronGet']],
+    ['POST', '/admin/crons/upsert', ['Standard\Controllers\Cron\CronController', 'upsertCronPost']],
+    ['POST', '/admin/crons/settings', ['Standard\Controllers\Cron\CronController', 'saveSettings']],
+    ['POST', '/admin/crons/delete', ['Standard\Controllers\Cron\CronController', 'deleteCron']],
 
 ];
