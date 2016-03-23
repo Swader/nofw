@@ -21,7 +21,7 @@ It includes the following out of the box (detailed descriptions of features are 
 - [Optional] Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
 - [Optional] Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - [Optional] Cronjobs via [Jobby](https://github.com/jobbyphp/jobby/) and built-in cronjob CRUD (see `/admin/crons` when logged in)
-- [Optional] Basic database access via [CakeORM](http://book.cakephp.org/3.0/en/orm) - default connection defined in `app/config/connections/default.php`.
+- [Optional] Basic database access via [CakeORM](http://book.cakephp.org/3.0/en/orm/database-basics.html) - default connection defined in `app/config/connections/default.php`.
 
 **Additionally**, the project includes support for an optional front-end workflow without NodeJS and NPM: full build chains and file watchers included. For more information about this approach, see [here](docs/FRONTEND.md).
 
