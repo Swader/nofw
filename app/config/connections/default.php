@@ -20,6 +20,6 @@ Cake\Datasource\ConnectionManager::config('default', [
     'password' => getenv('MAIN_DB_PASS'),
     'database' => getenv('MAIN_DB_NAME'),
     'encoding' => 'utf8',
-    'timezone' => 'CET',
+    'timezone' => 'UTC',
     'cacheMetadata' => false,
 ]);
