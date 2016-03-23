@@ -35,6 +35,7 @@ if (isset($_SESSION['user'])) {
 $shared = require_once __DIR__.'/shared/root.php';
 $shared['user'] = $user;
 require_once __DIR__.'/connections/default.php';
+require_once __DIR__.'/connections/users.php';
 
 return [
 

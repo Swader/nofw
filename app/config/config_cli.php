@@ -16,6 +16,7 @@ $d->load();
 
 $shared = require_once __DIR__.'/shared/root.php';
 require_once __DIR__.'/connections/default.php';
+require_once __DIR__.'/connections/users.php';
 
 return [
 
