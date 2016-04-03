@@ -9,6 +9,7 @@
 use function DI\object;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use Monolog\ErrorHandler;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\StreamHandler;
 use Psecio\Gatekeeper\Gatekeeper;
@@ -18,7 +19,7 @@ use Tamtamchik\SimpleFlash\TemplateFactory;
 use Tamtamchik\SimpleFlash\Templates;
 use Psr\Log\LoggerInterface as Logger;
 
-Gatekeeper::init(__DIR__.'/../../');
+Gatekeeper::init(__DIR__ . '/../../');
 Gatekeeper::disableThrottle();
 
 $user = null;
@@ -32,10 +33,10 @@ if (isset($_SESSION['user'])) {
     }
 }
 
-$shared = require_once __DIR__.'/shared/root.php';
+$shared = require_once __DIR__ . '/shared/root.php';
 $shared['user'] = $user;
-require_once __DIR__.'/connections/default.php';
-require_once __DIR__.'/connections/users.php';
+require_once __DIR__ . '/connections/default.php';
+require_once __DIR__ . '/connections/users.php';
 
 return [
 
@@ -67,7 +68,7 @@ return [
         return $te;
     },
 
-    'glide' => require_once __DIR__.'/shared/glide.php',
+    'glide' => require_once __DIR__ . '/shared/glide.php',
 
     ClientInterface::class => function () {
         $client = new Client();
@@ -93,14 +94,23 @@ return [
     Logger::class => function () use ($shared) {
         $logger = new \Monolog\Logger('nofwlog');
 
-        $logger->pushHandler(new StreamHandler($shared['site']['logFolder'].'/all.log'));
-        $logger->pushHandler(new StreamHandler($shared['site']['logFolder'].'/error.log', \Monolog\Logger::ERROR));
+        $logger->pushHandler(
+            new StreamHandler($shared['site']['logFolder'] . '/all.log')
+        );
+        $logger->pushHandler(
+            new StreamHandler(
+                $shared['site']['logFolder'] . '/error.log',
+                \Monolog\Logger::NOTICE
+            )
+        );
         if ($shared['site']['env'] == 'dev') {
             $logger->pushHandler(new BrowserConsoleHandler());
         }
 
+        ErrorHandler::register($logger);
+
         $logger->info('Logging set up');
 
         return $logger;
-    }
+    },
 ];

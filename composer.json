@@ -19,7 +19,9 @@
         "markstory/mini-asset": "^1.0",
         "natxet/CssMin": "^3.0",
         "linkorb/jsmin-php": "^1.0",
-        "codegyre/robo": "^0.6.0"
+        "codegyre/robo": "^0.6.0",
+        "bugsnag/bugsnag": "2.*",
+        "mead-steve/mono-snag": "^2.0"
 
     },
     "require-dev": {

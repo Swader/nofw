@@ -2,7 +2,6 @@
 
 namespace Standard\Controllers;
 
-use Cake\ORM\TableRegistry;
 use Standard\Abstracts\Controller;
 use Twig_Environment;
 
@@ -26,8 +25,9 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
+//        throw new \Exception("What is happening!");
         $message = 'Hello from Home, invoked';
-        
+
         echo $this->twig->render('home.twig', [
             'message' => $message,
         ]);
