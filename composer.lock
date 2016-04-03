@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1a46c372c5219e59e1dbb4f40b0d4a4e",
-    "content-hash": "79be89fa3d76de3badc01ed387a2d5ef",
+    "hash": "979ae084cc77e6e2bcaa344c7b790931",
+    "content-hash": "4eb390b28cf6b1ae83339b425b1886c7",
     "packages": [
         {
             "name": "beelab/bowerphp",
@@ -79,6 +79,54 @@
                 "package"
             ],
             "time": "2016-03-16 12:01:12"
+        },
+        {
+            "name": "bugsnag/bugsnag",
+            "version": "v2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bugsnag/bugsnag-php.git",
+                "reference": "9bae5c7f8940a390f8c3ef1b7b83f23419a2cd0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/9bae5c7f8940a390f8c3ef1b7b83f23419a2cd0c",
+                "reference": "9bae5c7f8940a390f8c3ef1b7b83f23419a2cd0c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Bugsnag_": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Smith",
+                    "email": "notifiers@bugsnag.com",
+                    "homepage": "https://bugsnag.com"
+                }
+            ],
+            "description": "Official Bugsnag notifier for PHP applications.",
+            "homepage": "https://github.com/bugsnag/bugsnag-php",
+            "keywords": [
+                "bugsnag",
+                "errors",
+                "exceptions",
+                "logging",
+                "tracking"
+            ],
+            "time": "2016-03-09 20:12:51"
         },
         {
             "name": "cakephp/collection",
@@ -1671,6 +1719,54 @@
                 "sass"
             ],
             "time": "2016-03-15 01:25:48"
+        },
+        {
+            "name": "mead-steve/mono-snag",
+            "version": "V2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/meadsteve/MonoSnag.git",
+                "reference": "5fec8a974597960c32e1eaba42807337d58cb5c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/meadsteve/MonoSnag/zipball/5fec8a974597960c32e1eaba42807337d58cb5c0",
+                "reference": "5fec8a974597960c32e1eaba42807337d58cb5c0",
+                "shasum": ""
+            },
+            "require": {
+                "bugsnag/bugsnag": "^2.2.5",
+                "monolog/monolog": "^1.7.0"
+            },
+            "require-dev": {
+                "phpspec/prophecy-phpunit": "1.*",
+                "satooshi/php-coveralls": "~0.6",
+                "squizlabs/php_codesniffer": "1.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MeadSteve\\MonoSnag\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Steve B",
+                    "email": "meadsteve@gmail.com"
+                }
+            ],
+            "description": "Bugsnag integration for monolog. An abstract handler that sends messages to Bugsnag",
+            "keywords": [
+                "bugsnag",
+                "error",
+                "logging",
+                "monolog"
+            ],
+            "time": "2015-11-09 09:19:34"
         },
         {
             "name": "monolog/monolog",

@@ -7,16 +7,17 @@
  * also be used for when any command line script needs to run. See `cron.php`
  */
 
+use Monolog\ErrorHandler;
 use SitePoint\Rauth;
 use Tamtamchik\SimpleFlash\Templates;
 use Psr\Log\LoggerInterface as Logger;
 
-$d = new Dotenv\Dotenv(__DIR__.'/../../');
+$d = new Dotenv\Dotenv(__DIR__ . '/../../');
 $d->load();
 
-$shared = require_once __DIR__.'/shared/root.php';
-require_once __DIR__.'/connections/default.php';
-require_once __DIR__.'/connections/users.php';
+$shared = require_once __DIR__ . '/shared/root.php';
+require_once __DIR__ . '/connections/default.php';
+require_once __DIR__ . '/connections/users.php';
 
 return [
 
@@ -24,7 +25,7 @@ return [
     'site-config' => $shared['site'],
     'cron-config' => $shared['cron'],
 
-    'glide' => require_once __DIR__.'/shared/glide.php',
+    'glide' => require_once __DIR__ . '/shared/glide.php',
 
     GuzzleHttp\ClientInterface::class => function () {
         $client = new GuzzleHttp\Client();
@@ -42,10 +43,20 @@ return [
     Logger::class => function () use ($shared) {
         $logger = new \Monolog\Logger('clilog');
 
-        $logger->pushHandler(new Monolog\Handler\StreamHandler(
-            $shared['site']['logFolder'].'/all-cli.log')
+        $logger->pushHandler(
+            new Monolog\Handler\StreamHandler(
+                $shared['site']['logFolder'] . '/all-cli.log'
+            )
+        );
+        $logger->pushHandler(
+            new Monolog\Handler\StreamHandler(
+                $shared['site']['logFolder'] . '/error.log',
+                \Monolog\Logger::NOTICE
+            )
         );
 
+        ErrorHandler::register($logger);
+
         return $logger;
-    }
+    },
 ];
