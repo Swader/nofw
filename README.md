@@ -18,6 +18,7 @@ It includes the following out of the box (detailed descriptions of features are 
 - Flash messages via ["tamtamchik/simple-flash"](https://github.com/tamtamchik/simple-flash), see master layout for where they're displayed, and `config.php` for where they are passed into Twig if they exist. In `config.php` you can also define a custom pre-made style to the templates - many popular CSS frameworks are supported. Defaults to [SemanticUI](http://semantic-ui.com).
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
 - User management: as a demonstration of controllers and some basic CRUD operations, see the `UsersController` which provides user and group CRUD.
+- Error logging via [Monolog](https://github.com/Seldaek/monolog) and/or Bugsnag
 - [Optional] Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
 - [Optional] Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - [Optional] Cronjobs via [Jobby](https://github.com/jobbyphp/jobby/) and built-in cronjob CRUD (see `/admin/crons` when logged in)
@@ -146,6 +147,10 @@ When a route is not found, a 404 page is automatically rendered. When the wrong 
 ### Sending Emails
 
 Sending "forgot password" emails is done via Mailgun, purely because it's simplest. The email templates are in `src/Standard/Views/emails`. However, it should be noted that it's currently used without a Mailgun client package or any other dependency, so really, the emailing system is completely optional and interchangeable. If, however, you do choose to use Mailgun, put the credentials into the `.env` file (see `.env.example` for inspiration) and then see how it was done in `AuthController::forgotPassword`.
+
+### Error logging with Monolog and/or Bugsnag
+
+Monolog is installed by default and registered as the default error handler. This means that all errors will be logged to `logs/error.log`. Change the log file or the log level in the respective `config_*.php`. Bugsnag is installed, too, for those who want to use it. Just change the key in `.env` and register the Bugsnag handler.
 
 ### Debug mode and environment
 
