@@ -41,7 +41,7 @@ if (getenv('INTL') == 'true') {
     $domain = "messages"; // which language file to use
 
     $localeFolder = getenv('LOCALE_FOLDER');
-    if (strpos($localeFolder, 'ROOT/')) {
+    if (strpos($localeFolder, 'ROOT/') !== FALSE) {
         $localeFolder = str_replace(
             'ROOT/', constant('ROOT') . '/', $localeFolder
         );
