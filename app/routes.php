@@ -17,24 +17,24 @@ return [
     ['GET', '/extra', ['Standard\Controllers\ExtraController', 'indexAction']],
 
     // Authentication routes (sign up / log in)
-    ['GET', '/auth', ['Standard\Controllers\AuthController', 'index']],
-    ['GET', '/logout', ['Standard\Controllers\AuthController', 'logout']],
-    ['GET', '/resetpass/code/{code}/{email}', ['Standard\Controllers\AuthController', 'resetPass']],
-    ['POST', '/resetpass', ['Standard\Controllers\AuthController', 'processResetPass']],
+    ['GET', '/auth', ['Standard\Controllers\AuthController', 'indexAction']],
+    ['GET', '/logout', ['Standard\Controllers\AuthController', 'logoutAction']],
+    ['GET', '/resetpass/code/{code}/{email}', ['Standard\Controllers\AuthController', 'resetPassAction']],
+    ['POST', '/resetpass', ['Standard\Controllers\AuthController', 'processResetPassAction']],
     [
         'POST',
         '/auth/signup',
-        ['Standard\Controllers\AuthController', 'processSignup']
+        ['Standard\Controllers\AuthController', 'processSignupAction']
     ],
     [
         'POST',
         '/auth/login',
-        ['Standard\Controllers\AuthController', 'processLogin']
+        ['Standard\Controllers\AuthController', 'processLoginAction']
     ],
     [
         ['GET', 'POST'],
         '/auth/forgotpass',
-        ['Standard\Controllers\AuthController', 'forgotPassword']
+        ['Standard\Controllers\AuthController', 'forgotPasswordAction']
     ],
 
     ['GET', '/account', 'Standard\Controllers\AccountController'],
@@ -43,20 +43,20 @@ return [
 
     /* Comment the line below if you don't want to use Glide's dynamic
      * image generation (see http://www.sitepoint.com/easy-dynamic-on-demand-image-resizing-with-glide) */
-    ['GET', '/static/image/{image}', ['Standard\Controllers\ImageController', 'renderImage']],
-    ['GET', '/image/demo', ['Standard\Controllers\ImageController', 'demo']],
+    ['GET', '/static/image/{image}', ['Standard\Controllers\ImageController', 'renderImageAction']],
+    ['GET', '/image/demo', ['Standard\Controllers\ImageController', 'demoAction']],
 
     // User management routes
     ['GET', '/users', 'Standard\Controllers\UsersController'],
-    ['GET', '/users/add[/{id}]', ['Standard\Controllers\UsersController', 'upsertUser']],
-    ['POST', '/users/add', ['Standard\Controllers\UsersController', 'upsertUserProcess']],
-    ['GET', '/users/groups', ['Standard\Controllers\UsersController', 'listGroups']],
-    ['GET', '/users/groups/add[/{id}]', ['Standard\Controllers\UsersController', 'upsertGroup']],
-    ['POST', '/users/groups/add', ['Standard\Controllers\UsersController', 'upsertGroupProcess']],
-    ['POST', '/users/forcelogin', ['Standard\Controllers\UsersController', 'logInAs']],
-    ['GET', '/users/exitsuper', ['Standard\Controllers\UsersController', 'exitSuper']],
-    ['GET', '/users/delete/{id}', ['Standard\Controllers\UsersController', 'deleteUser']],
-    ['GET', '/users/groups/delete/{id}', ['Standard\Controllers\UsersController', 'deleteGroup']],
+    ['GET', '/users/add[/{id}]', ['Standard\Controllers\UsersController', 'upsertUserAction']],
+    ['POST', '/users/add', ['Standard\Controllers\UsersController', 'upsertUserProcessAction']],
+    ['GET', '/users/groups', ['Standard\Controllers\UsersController', 'listGroupsAction']],
+    ['GET', '/users/groups/add[/{id}]', ['Standard\Controllers\UsersController', 'upsertGroupAction']],
+    ['POST', '/users/groups/add', ['Standard\Controllers\UsersController', 'upsertGroupProcessAction']],
+    ['POST', '/users/forcelogin', ['Standard\Controllers\UsersController', 'logInAsAction']],
+    ['GET', '/users/exitsuper', ['Standard\Controllers\UsersController', 'exitSuperAction']],
+    ['GET', '/users/delete/{id}', ['Standard\Controllers\UsersController', 'deleteUserAction']],
+    ['GET', '/users/groups/delete/{id}', ['Standard\Controllers\UsersController', 'deleteGroupAction']],
 
     ['GET', '/admin/crons', ['Standard\Controllers\Cron\CronController', 'listCrons']],
     ['GET', '/admin/crons/add', ['Standard\Controllers\Cron\CronController', 'upsertCronGet']],

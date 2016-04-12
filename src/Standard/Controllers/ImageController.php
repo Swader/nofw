@@ -33,7 +33,7 @@ class ImageController extends Controller
         $this->twig = $twig;
     }
 
-    public function renderImage($image)
+    public function renderImageAction($image)
     {
         $width = $this->getWidth($image);
 
@@ -71,7 +71,7 @@ class ImageController extends Controller
         return $width;
     }
 
-    public function demo()
+    public function demoAction()
     {
         echo $this->twig->render('image/demo.twig');
     }

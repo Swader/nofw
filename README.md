@@ -19,6 +19,7 @@ It includes the following out of the box (detailed descriptions of features are 
 - Annotation-based ACL (for controlling access to classes and methods, not routes) via [SitePoint/Rauth](https://github.com/sitepoint/Rauth)
 - User management: as a demonstration of controllers and some basic CRUD operations, see the `UsersController` which provides user and group CRUD.
 - Error logging via [Monolog](https://github.com/Seldaek/monolog) and/or Bugsnag
+- [Optional] OOTB gettext support for multi-language apps. See [here](docs/I18N.md).
 - [Optional] Automatic image resizing for media queries via [league/glide](http://glide.thephpleague.com) - see below for explanation
 - [Optional] Validation with ["respect/validation"](https://github.com/Respect/Validation) (usage example in AuthController - currently hard-coupled to app)
 - [Optional] Cronjobs via [Jobby](https://github.com/jobbyphp/jobby/) and built-in cronjob CRUD (see `/admin/crons` when logged in)
@@ -139,6 +140,10 @@ For more information, and to learn how to use CakeORM, please see [their docs](h
 ### Styling
 
 See [FRONTEND.md](docs/FRONTEND.md).
+
+### Internationalization
+
+See [I18N.md](docs/I18N.md).
 
 ### Error pages
 

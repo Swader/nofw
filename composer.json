@@ -21,7 +21,8 @@
         "linkorb/jsmin-php": "^1.0",
         "codegyre/robo": "^0.6.0",
         "bugsnag/bugsnag": "2.*",
-        "mead-steve/mono-snag": "^2.0"
+        "mead-steve/mono-snag": "^2.0",
+        "twig/extensions": "^1.3"
 
     },
     "require-dev": {

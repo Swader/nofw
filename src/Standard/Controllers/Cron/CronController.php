@@ -39,7 +39,7 @@ class CronController extends Controller
         $this->cronsTable = TableRegistry::get('Cron');
     }
 
-    public function listCrons()
+    public function listCronsAction()
     {
         $cronSettings = $this->cronSettings->find()
             ->hydrate(false)
@@ -67,7 +67,7 @@ class CronController extends Controller
         );
     }
 
-    public function upsertCronGet(int $id = null)
+    public function upsertCronGetAction(int $id = null)
     {
         $cron = ($id) ? $this->cronsTable->get(
             $id
@@ -76,7 +76,7 @@ class CronController extends Controller
         echo $this->twig->render('cron/upsert.twig', ['cron' => $cron]);
     }
 
-    public function upsertCronPost()
+    public function upsertCronPostAction()
     {
         $id = $_POST['id'] ?? null;
         unset($_POST['id']);
@@ -100,7 +100,7 @@ class CronController extends Controller
         $this->redirect('/admin/crons');
     }
 
-    public function saveSettings()
+    public function saveSettingsAction()
     {
         try {
             $this->cronSettings->save($this->cronSettings->get(1)->set($_POST));
@@ -113,7 +113,7 @@ class CronController extends Controller
         $this->redirect('/admin/crons');
     }
 
-    public function deleteCron()
+    public function deleteCronAction()
     {
         $id = $_POST['id'] ?? null;
         if ($id) {

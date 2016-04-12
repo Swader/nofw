@@ -33,6 +33,26 @@ if (isset($_SESSION['user'])) {
     }
 }
 
+if (getenv('INTL') == 'true') {
+    $language = getenv('INTL_LANG');
+    putenv("LANGUAGE=" . $language);
+    setlocale(LC_ALL, $language);
+
+    $domain = "messages"; // which language file to use
+
+    $localeFolder = getenv('LOCALE_FOLDER');
+    if (strpos($localeFolder, 'ROOT/')) {
+        $localeFolder = str_replace(
+            'ROOT/', constant('ROOT') . '/', $localeFolder
+        );
+    }
+
+    bindtextdomain($domain, $localeFolder);
+    bind_textdomain_codeset($domain, 'UTF-8');
+
+    textdomain($domain);
+}
+
 $shared = require_once __DIR__ . '/shared/root.php';
 $shared['user'] = $user;
 require_once __DIR__ . '/connections/default.php';
@@ -50,6 +70,8 @@ return [
         );
 
         $te = new Twig_Environment($loader);
+
+        $te->addExtension(new Twig_Extensions_Extension_I18n());
 
         $te->addGlobal('site', $shared['site']);
 

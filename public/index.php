@@ -14,6 +14,7 @@
  * @see http://www.sitepoint.com/control-user-access-to-classes-and-methods-with-rauth/
  */
 
+define('ROOT', realpath(__DIR__));
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';

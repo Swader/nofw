@@ -10,9 +10,7 @@ assets/bower/*
 *.iws
 
 # Logs
-logs
-error.log
-access.log
+logs/*.log
 
 # Netbeans
 nbproject
@@ -51,3 +49,5 @@ public/static/image/*
 !public/static/image/.gitkeep
 
 phinx.yml
+
+app/bin/i18n/config_local.sh

@@ -59,7 +59,7 @@ class AuthController extends Controller
         }
     }
 
-    public function processSignup()
+    public function processSignupAction()
     {
 
         try {
@@ -109,7 +109,7 @@ class AuthController extends Controller
         $this->redirect('/auth');
     }
 
-    public function processLogin()
+    public function processLoginAction()
     {
         $success = false;
         try {
@@ -133,7 +133,7 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logoutAction()
     {
         session_destroy();
         unset($_SESSION['user']);
@@ -143,7 +143,7 @@ class AuthController extends Controller
     /**
      * @param ClientInterface $client
      */
-    public function forgotPassword(ClientInterface $client)
+    public function forgotPasswordAction(ClientInterface $client)
     {
 
         switch ($_SERVER['REQUEST_METHOD']) {
@@ -215,7 +215,7 @@ class AuthController extends Controller
 
     }
 
-    public function resetPass($code, $email)
+    public function resetPassAction($code, $email)
     {
         $email = base64_decode($email);
         /** @var UserModel $user */
@@ -238,7 +238,7 @@ class AuthController extends Controller
         echo $this->twig->render('auth/resetpass.twig');
     }
 
-    public function processResetPass()
+    public function processResetPassAction()
     {
         /** @var UserModel $user */
         $user = Gatekeeper::findUserByEmail($_SESSION['user']);

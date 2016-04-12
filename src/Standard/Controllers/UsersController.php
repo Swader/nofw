@@ -52,7 +52,7 @@ class UsersController extends Controller
         );
     }
 
-    public function upsertUser($id = null)
+    public function upsertUserAction($id = null)
     {
         $data = ['groups' => $this->gk_groups, 'groupnames' => []];
         if ($id) {
@@ -69,7 +69,7 @@ class UsersController extends Controller
         echo $this->twig->render('users/upsert.twig', $data);
     }
 
-    public function upsertUserProcess()
+    public function upsertUserProcessAction()
     {
         $id = $_POST['id'] ?? null;
 
@@ -162,14 +162,14 @@ class UsersController extends Controller
         return true;
     }
 
-    public function listGroups()
+    public function listGroupsAction()
     {
         echo $this->twig->render(
             'users/groups/list.twig', ['groups' => $this->gk_groups]
         );
     }
 
-    public function upsertGroup($id = null)
+    public function upsertGroupAction($id = null)
     {
         $data = [];
         if ($id) {
@@ -183,7 +183,7 @@ class UsersController extends Controller
         echo $this->twig->render('users/groups/upsert.twig', $data);
     }
 
-    public function upsertGroupProcess()
+    public function upsertGroupProcessAction()
     {
         $id = $_POST['id'] ?? null;
 
@@ -245,7 +245,7 @@ class UsersController extends Controller
     /**
      * Only admins can access this method
      */
-    public function logInAs()
+    public function logInAsAction()
     {
         if (!ctype_digit($_POST['id'])) {
             $this->flasher->error(
@@ -272,7 +272,7 @@ class UsersController extends Controller
     /**
      * @auth-groups users
      */
-    public function exitSuper()
+    public function exitSuperAction()
     {
         if (isset($_SESSION['superuser'])) {
             $_SESSION['user'] = $_SESSION['superuser'];
@@ -282,7 +282,7 @@ class UsersController extends Controller
         $this->redirect('/');
     }
 
-    public function deleteUser(int $id)
+    public function deleteUserAction(int $id)
     {
         if (Gatekeeper::deleteUserById($id)) {
 
@@ -296,7 +296,7 @@ class UsersController extends Controller
         $this->redirect('/users');
     }
 
-    public function deleteGroup(int $id)
+    public function deleteGroupAction(int $id)
     {
         if (Gatekeeper::deleteGroupById($id)) {
             $this->flasher->success('Group deleted');
