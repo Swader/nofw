@@ -8,7 +8,7 @@ echo "Regenerating cache"
 php app/bin/twigcache.php
 
 echo "Running xgettext on the cached files"
-xgettext -o ${LOCALE_FOLDER}/messages.pot --from-code=UTF-8 -n --omit-header /tmp/cache/*/*.php
+xgettext -o ${LOCALE_FOLDER}/messages.pot --from-code=UTF-8 -n --omit-header --no-location /tmp/cache/*/*.php
 
 for folder in $(find ${LOCALE_FOLDER} -maxdepth 1 -type d | awk -F/ '{print $NF}')
 do

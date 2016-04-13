@@ -1,3 +1,5 @@
-#: /tmp/cache/d0/d006e63c5a4c4e6a700d9273d4523dd0cf419105fa4b00cf6b89918c67df4b2b.php:56
 msgid "Trans-friendly"
+msgstr ""
+
+msgid "Testing"
 msgstr ""
